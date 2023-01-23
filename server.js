@@ -2,6 +2,7 @@ const express = require("express");
 const colors = require("colors");
 const dbConnect = require("./db.js");
 const corsOptions = require('./config/corsOptions.js');
+const cors = require('cors')
 require("dotenv").config();
 const { errorHandler, routeNotFound } = require("./middleware/errorMiddleware");
 const userRoutes = require("./routes/userRoutes");
