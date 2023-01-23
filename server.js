@@ -13,7 +13,7 @@ const path = require("path");
 const app = express();
 
 dbConnect();
-app.use(cors(corsOptions))
+app.use(cors())
 app.use(express.json());
 
 // Main routes
