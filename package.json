@@ -7,10 +7,6 @@
       "test": "echo \"Error: no test specified\" && exit 1",
       "start": "node server.js"
     },
-    "engines": {
-      "node": "16.x",
-      "npm":"6.x"
-    },
     "keywords": [],
     "author": "chandan tiwari",
     "license": "ISC",

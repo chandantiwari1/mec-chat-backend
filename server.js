@@ -1,6 +1,7 @@
 const express = require("express");
 const colors = require("colors");
 const dbConnect = require("./db.js");
+const corsOptions = require('./config/corsOptions.js');
 require("dotenv").config();
 const { errorHandler, routeNotFound } = require("./middleware/errorMiddleware");
 const userRoutes = require("./routes/userRoutes");
@@ -8,9 +9,10 @@ const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
 const path = require("path");
+const app = express();
 
 dbConnect();
-const app = express();
+app.use(cors(corsOptions))
 app.use(express.json());
 
 // Main routes
@@ -22,19 +24,19 @@ app.use("/api/notification", notificationRoutes);
 // -----------------------------------------------------------------------------
 
 const __dirname$ = path.resolve();
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname$, "/client/build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname$, "client", "build", "index.html"));
-  });
-} else {
-  // First route
-  app.get("/", (req, res) => {
-    res.status(200).json({
-      message: "Hello from DE-Link Chat App server",
-    });
-  });
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname$, "/client/build")));
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname$, "client", "build", "index.html"));
+//   });
+// } else {
+//   // First route
+//   app.get("/", (req, res) => {
+//     res.status(200).json({
+//       message: "Hello from DE-Link Chat App server",
+//     });
+//   });
+// }
 
 // -----------------------------------------------------------------------------
 
